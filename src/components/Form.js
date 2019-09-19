@@ -34,13 +34,18 @@ const Form = props => {
 const FormContainer = styled.div`
   width: 100%;
   height: 100%;
-  max-width: 500px;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem 3rem;
+  padding: 3rem 1.5rem;
   background: #373635;
+
+  @media (min-width: 1024px) {
+    max-width: 500px;
+    padding: 2rem 3rem;
+  }
 
   form {
     min-height: auto;
@@ -48,6 +53,7 @@ const FormContainer = styled.div`
     margin: 0 auto;
     background: #fff;
     padding: 3rem 2rem;
+    max-width: 500px;
 
     .input-container {
       margin-bottom: 2rem;

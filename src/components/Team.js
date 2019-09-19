@@ -23,10 +23,18 @@ const Team = props => {
   
   
 const TeamContainer = styled.div `
-    width: calc(100% - 500px);
+    width: 100%;
     height: 100%;
     overflow: auto;
-    padding: 2rem 3rem;
+    max-width: calc(500px + 3rem);
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+
+    @media (min-width: 1024px) {
+        width: calc(100% - 500px);
+        padding: 2rem 3rem;
+        max-width: 100%;
+    }
   
     .member-card {
       border: 1px solid #ddd;
