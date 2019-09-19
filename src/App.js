@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,  useEffect } from 'react';
 import Form from './components/Form';
 import Team from './components/Team';
 import styled from 'styled-components';
@@ -17,15 +17,32 @@ const App = () => {
   // Set State for App :)
   const [ teamForm, setTeamForm ] = useState(initialFormState);
   const [ teamList, setTeamList ] = useState(initialTeamState);
+  const [ memberToEdit, setMemberToEdit ] = useState({});
 
+
+  // useEffect(() => {
+  //   if(memberToEdit) {
+  //     setTeamList([...teamList, {
+
+  //     }])
+  //     setMemberToEdit({});
+  //   }
+  // }, [memberToEdit])
 
   //Handler Functions
+  const handleClick = id => {
+    const member = teamList.filter(item => item.id === id);
+    setMemberToEdit(member[0]);
+    setTeamForm(member[0]);
+  }
+
   const handleChange = e => {
     setTeamForm({
       ...teamForm,
       [e.target.id]: e.target.value
     })
   }
+
   const handleSubmit = e => {
     e.preventDefault();
     const { name, email, role } = teamForm;
@@ -46,11 +63,12 @@ const App = () => {
 
   return (
     <AppContainer>
-      <Form teamForm={teamForm} handleSubmit={handleSubmit} handleChange={handleChange} />
-      <Team teamList={teamList} />
+      <Form teamForm={teamForm} memberToEdit={memberToEdit} handleSubmit={handleSubmit} handleChange={handleChange} />
+      <Team teamList={teamList} handleClick={handleClick} />
     </AppContainer>
   );
 }
+
 
 const AppContainer = styled.div`
   width: 100%;

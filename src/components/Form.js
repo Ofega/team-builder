@@ -7,6 +7,7 @@ const Form = props => {
     const { teamForm, handleChange, handleSubmit } = props;
     const { name, email, role } = teamForm;
 
+
     return (
         <FormContainer>
         <form>
